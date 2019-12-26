@@ -25,7 +25,7 @@ SECRET_KEY = '(bz2j+#6zn#svb%aatu2-#!9)y4u)$*snx83lykj6dl!l84)8*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['162.241.200.194', ]
 
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -33,6 +33,7 @@ AUTH_USER_MODEL = 'accounts.User'
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.staticfiles',
     'service.apps.ServiceConfig',
     'orders.apps.OrdersConfig',
     'accounts.apps.AccountsConfig',
@@ -42,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'storages'
 ]
 
@@ -84,10 +84,22 @@ WSGI_APPLICATION = 'farmservice.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'farm',
+        'USER': 'farm_user',
+        'PASSWORD': 'Fol6Ni&am0R',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -128,8 +140,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
-USE_S3 = 'FALSE'
+
+USE_S3 = False
 
 if USE_S3:
     # aws settings
@@ -153,7 +170,10 @@ else:
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = [
+    # os.path.join(BASE_DIR, 'static'),
+    '/home/ubuntu/farm/service/static/service/',
+]
 
 
 CART_SESSION_ID = 'cart'
