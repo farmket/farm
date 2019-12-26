@@ -92,16 +92,6 @@ DATABASES = {
     }
 }
 """
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'farm',
-        'USER': 'farm_user',
-        'PASSWORD': 'Fol6Ni&am0R',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
 
 
 # Password validation
@@ -186,3 +176,7 @@ EMAIL_HOST_USER = 'reset.farmket@gmail.com' #my gmail username
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = ' <info.farmket@gmail.com>'
 
+try:
+    from .local_settings import *
+except:
+    pass

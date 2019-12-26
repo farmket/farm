@@ -96,3 +96,5 @@ dmypy.json
 media/
 .idea/
 staticfiles/
+
+farmservice/local_settings.py
