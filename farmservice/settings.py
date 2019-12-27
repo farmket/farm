@@ -84,14 +84,14 @@ WSGI_APPLICATION = 'farmservice.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+"""
 
 
 # Password validation
@@ -171,13 +171,12 @@ CART_SESSION_ID = 'cart'
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = 'who!@mFARMKET' #my gmail password
+EMAIL_HOST_PASSWORD = 'whoi@mFARMKET' #my gmail password
 EMAIL_HOST_USER = 'reset.farmket@gmail.com' #my gmail username
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = ' <info.farmket@gmail.com>'
-#
-# try:
-#     from .local_settings import *
-# except:
-#     pass
 
+try:
+    from .local_settings import *
+except:
+    pass
