@@ -11,7 +11,7 @@ class Order(models.Model):
     o_id=models.CharField(max_length=10)
     name = models.CharField(max_length=60)
     email = models.EmailField()
-    phone_no = models.IntegerField()
+    phone_no = models.CharField(max_length=11)
     shop=models.ForeignKey(Shop, on_delete=models.CASCADE)
     num= models.IntegerField()
     date=models.DateField()
