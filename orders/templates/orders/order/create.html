@@ -88,7 +88,7 @@ background-color:white;
 -->
                             <div class="col-md-6 col-xs-7 paddin-bottom">
 									<label for="pno">Phone No</label>
-									<input type="number"  min="1000000000" max="9999999999"  id="pno" required="required" name=pno" class="form-control farmket-f-radius" placeholder="Your firstname">
+									<input type="number"  min="1000000000" max="9999999999"  id="pno" required="required" name=pno" class="form-control farmket-f-radius" placeholder="Your Phone no">
 								</div>
 
                             </div>
@@ -111,7 +111,7 @@ background-color:white;
 									<label for="date">Date</label>
 				                      <i class="icon icon-calendar2" data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
 
-				                      <input type="text" required="required" data-format="yyyy-MM-dd" data-provide="datepicker" id="date" name="date" class="form-control date farmket-f-radius" placeholder="Check-in date">
+				                      <input type="date" required="required" data-format="yyyy-MM-dd" data-provide="datepicker" id="date" name="date" class="form-control date farmket-f-radius" placeholder="Check-in date">
                                 </div>
 
 								<div class="col-md-6 col-xs-6 padding-bottom">
@@ -210,13 +210,13 @@ background-color:white;
                         </li>
                     {% endfor %}
 
-                <li class="list-group-itective space"> Booking Price: {{ cart.get_total_price }} Rs </li>
-                <li class="list-group-itective space"> Total Booking Price: {{ no }}* {{ cart.get_total_price }} ={{ shopc }}Rs </li>
+                <li class="list-group-itective space">TOTAL Price: {{ cart.get_total_price }} Rs </li>
+                <!--<li class="list-group-itective space"> Total Booking Price: {{ no }}* {{ cart.get_total_price }} ={{ shopc }}Rs </li>-->
 
 
-                <li class="list-group-itective space">Saved Percentage:  {{ cart.get_saved }}%</li>
+                <!--<li class="list-group-itective space">Saved Percentage:  {{ cart.get_saved }}%</li>-->
 
-                <li class="list-groupctive space" >Total Rs Saved:  {{ cart.get_saved_rs }}Rs</li>
+                <!--<li class="list-groupctive space" >Total Rs Saved:  {{ cart.get_saved_rs }}Rs</li>-->
 
 
                 </ul>

@@ -5,11 +5,11 @@
 
 {% block head %}
 
-    <title>Fruits ,vegetables, Groceries,snacks ,beverages,sauce,and many more,at store</title>
+
 <meta http-equiv="content-type" content="text/html; charset=utf-8" >
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 
-	<title>Tour Template</title>
+	<title>Cart Details..Farmket India</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -111,20 +111,25 @@
 </font>
 
 -->
+<style>
+    .column-labels labels{
+font-size:400px;
+    }
 
+</style>
 <div class="container">
 
 <h2>Shoping Cart</h2>
 
 <div class="shopping-cart" style="padding:10px; padding-right:50px ; margin-top:10%; margin-bottom:10%;">
 
-  <div class="column-labels">
-    <label class="product-image">Image</label>
+  <div class="column-labels"><font size="2.5px">
+      <label class="product-image">Image</label>
     <label class="product-details">Product</label>
     <label class="product-price">Price</label>
     <label class="product-quantity">Quantity</label>
     <label class="product-removal">Remove</label>
-    <label class="product-line-price">Total</label>
+      <label class="product-line-price">Total</label></font>
   </div>
 
                     {% for item in cart %}
@@ -198,7 +203,7 @@
       <div class="totals-value"  id="cart-shipping">0.00</div>
     </div>
     <div class="totals-item totals-item-total">
-      <label>Grand Total</label>
+      <label style="font-size:17px">Grand Total</label>
       <div class="totals-value" id="cart-total">{{ cart.get_total_price }}</div>
     </div>
   </div>
