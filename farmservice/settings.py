@@ -175,14 +175,6 @@ EMAIL_HOST_PASSWORD = 'whoi@mFARMKET' #my gmail password
 EMAIL_HOST_USER = 'reset.farmket@gmail.com' #my gmail username
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = ' <info.farmket@gmail.com>'
-<<<<<<< HEAD
-
-try:
-    from .local_settings import *
-except:
-    pass
-=======
->>>>>>> b445eb2f67e49ebc8b65e96b0fd419512b45d5b9
 
 try:
     from .local_settings import *
