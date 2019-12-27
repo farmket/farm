@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap Multiple Item Product Carousel</title>
+
 
 {% block head %}
 
@@ -391,16 +391,17 @@ text-decoration-line: none;
               <!-- Footer Widget Nav -->
               <nav class="footer-widget-nav">
                 <ul>
-                  <li><a href="#">Purchase</a></li>
-                  <li><a href="#">Shipping</a></li>
-                  <li><a href="#">FAQs</a></li>
-                  <li><a href="#">Careers</a></li>
-                  <li><a href="#">Payments</a></li>
-                  <li><a href="#">Partners</a></li>
-                  <li><a href="#">Guide</a></li>
-                  <li><a href="#">Standard</a></li>
-                  <li><a href="#">News</a></li>
-                  <li><a href="#">Brands</a></li>
+                  <li><a href="{% url 'service:about_us' %}">About Us</a></li>
+                  <li><a href="{% url 'service:contact_us' %}">Contact Us</a></li>
+                  <!--<li><a href="#">Shipping</a></li>-->
+                  <!--<li><a href="#">FAQs</a></li>-->
+                  <!--<li><a href="#">Careers</a></li>-->
+                  <!--<li><a href="#">Payments</a></li>-->
+                  <!--<li><a href="#">Partners</a></li>-->
+                  <!--<li><a href="#">Guide</a></li>-->
+                  <!--<li><a href="#">Standard</a></li>-->
+                  <!--<li><a href="#">News</a></li>-->
+                  <!--<li><a href="#">Brands</a></li>-->
                 </ul>
               </nav>
             </div>
@@ -449,9 +450,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
               <div class="footer-nav">
                 <nav>
                   <ul>
-                    <li><a href="#">About</a></li>
-                       <li><a href="#">Contact</a></li>
-                      <li><a href="#">Login</a></li>
+                    <li><a href="{% url 'service:about_us' %}">About</a></li>
+                       <li><a href="{% url 'service:contact_us' %}">Contact</a></li>
+                      <!--<li><a href="#">Login</a></li>-->
 
                   </ul>
                 </nav>
