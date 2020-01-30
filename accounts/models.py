@@ -67,7 +67,7 @@ class User(AbstractBaseUser):
                            message='Username must be alphanumeric or contain numbers',
                            code='invalid_username'
                            )],
-        unique=True,blank=True
+        unique=False,blank=True
     )
     email = models.EmailField(max_length=255, unique=True)
     phone_regex = RegexValidator(regex=r'^[6-9]\d{9}$', message="Phone number must be entered in the format: '9999999999'. Up to 10 digits allowed.")
@@ -75,7 +75,7 @@ class User(AbstractBaseUser):
     full_name = models.CharField(max_length=255, blank=True, null=True)
     verified = models.BooleanField(default=False)
     worker=models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True) # can login
+    is_active = models.BooleanField(default=True)# can login
     is_staff = models.BooleanField(default=False) # staff user non superuser
     is_admin = models.BooleanField(default=False) # superuser
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -122,7 +122,8 @@ class User(AbstractBaseUser):
 
 def user_pre_save_receiver(sender,instance,*args,**kwargs):
     if not instance.username:
-        instance.username= unique_username_generator(instance)
+        # instance.username= unique_username_generator(instance)
+         instance.username= instance.full_name
 
 
 pre_save.connect(user_pre_save_receiver,sender=User)
