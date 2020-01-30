@@ -132,6 +132,112 @@ def order_create(request, pk):
         else:
             return redirect('/service/detail/'+pk+'/')
 
+
+@login_required(login_url='/accounts/login_user')
+def order_create_cod(request, pk):
+        cart = Cart(request)
+        a=0
+
+        oo=choice(ascii_lowercase)
+        oo=oo.upper()
+
+
+        for item in cart:
+            a=a+1
+        if a == 0:
+            item=0
+        order=0
+        if a != 0:
+
+            b = item
+            ids = b['id']
+            g = get_object_or_404(Shop, pk=int(ids))
+
+            shopn=g.name
+            print(g.name)
+
+        if  a != 0 :
+            a = sum(Decimal(item['price']) * 1 for item in cart.cart.values())
+            b = sum(Decimal(item['b_price']) * 1 for item in cart.cart.values())
+            nos = 1
+            tshopc = nos * a
+            s = (b - a) * nos
+
+            if b == 0:
+                p = 0
+
+            else:
+                p = round(Decimal(s / b * 100), 2)
+
+            if request.method == 'POST':
+                form = OrderCreateForm(request.POST)
+
+                name = request.POST.get("name")
+                pno = request.POST.get('pno')
+                email = request.POST.get("email")
+                date = request.POST.get("date")
+                time = request.POST.get("time")
+               # print(email+"before")
+                print(request.user.email)
+                if email == "":
+                    email=request.user.email
+
+                if name == "":
+                    name = request.user.full_name
+                    print(name)
+
+                if not pno :
+                    pno = request.user.phone_no
+                    print("daf")
+
+                ordr = Order()
+                ordr.email = email.lower()
+                ordr.user = request.user
+                ordr.name = name
+                ordr.phone_no = pno
+                ordr.date = date
+                ordr.timing = time
+                ordr.num=nos
+
+                #order = form.save()
+                ordr.user=request.user
+                ordr.total_cost=sum(Decimal(item['b_price']) * item['quantity'] for item in cart)
+
+            #       z=(sum(Decimal(item['price']) * item['quantity'] for item in cart))/10   -z below
+                ordr.total_a_cost=sum(Decimal(item['price']) * item['quantity'] for item in cart)
+
+                ordr.shop=g
+                print(g)
+                ordr.save()
+                print("abhit above")
+
+                ordr.o_id=order_id(ordr)
+
+                for item in cart:
+                    OrderItem.objects.create(
+                        order=ordr,
+                        product=item['product'],
+                        price=(item['b_price']),
+                        quantity=item['quantity'],
+                        total_i_price=int(item['price']),
+                    )
+                cart.clear()
+
+                ordr.save()
+
+                return render(request, 'orders/order/created.html', {'order': ordr})
+
+
+            else:
+                form = OrderCreateForm()
+
+            return render(request, 'orders/order/create.html', {'form': form,'shop':g,'shopc':tshopc,'no':nos})
+
+        else:
+            return redirect('/service/detail/'+pk+'/')
+
+
+
 def order_id(order):
     id=order.id
     n=(order.name).lower()

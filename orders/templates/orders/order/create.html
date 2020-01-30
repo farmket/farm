@@ -69,7 +69,7 @@ background-color:white;
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 animate-box" style=" margin-top:15%;">
 						<h3 style="text-align:center; margin-bottom:20px;">Booking... <span class="pull-right" style="color:red;">{{ error_message }}</span></h3>
-						<form action="{% url 'orders:order_create'  shop.id %}" method="POST">
+						<form action="{% url 'orders:order_create_cod'  shop.id %}" id="form-create" method="POST">
 							{% csrf_token %}
 							<div class="row form-group">
 								<div class="col-md-6 col-xs-5 paddingbottom">
@@ -98,8 +98,6 @@ background-color:white;
 									<input type="email" required="required" name="email" id="email" class="form-control email farmket-f-radius" placeholder="Your email address" >
 								</div>
 							</div>
-
-
 
 
 
@@ -145,7 +143,9 @@ background-color:white;
 							</div>-->
 
 							<div class="form-group text-center">
-								<input type="submit" value="book Order" style="width:100px; height:40px; font-size:15px;" class="btn btn-primary">
+								<button  id="paynow" data-url="{% url 'orders:order_create'  shop.id %}" value="Pay Now And Book" style="width:150px; height:40px; font-size:15px;" class="btn btn-primary"> Pay Now And Book</button>&nbsp&nbsp&nbsp
+								<button  id="paycod" data-url="{% url 'orders:order_create_cod'  shop.id %}" value="book Order COD" style="width:150px; height:40px; font-size:15px;" class="btn btn-primary">book Order COD</button>
+
 							</div>
 
 						</form>
@@ -239,6 +239,24 @@ background-color:white;
 {% endblock %}
 
 {% block bases %}
+
+<script>
+  $("#paynow, #paycod").click(function(e) {
+      var allok = valrequired();
+
+    if (!allok) {
+
+
+    e.preventDefault();
+
+    var form = $("#form-create");
+
+    form.prop("action", $(this).data("url"));
+form.validate();
+    form.submit();
+    }
+  });
+</script>
 <script>
 
 
