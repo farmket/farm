@@ -14,7 +14,7 @@ from random import choice
 from string import ascii_lowercase
 from django.views.decorators.csrf import csrf_exempt
 from PayTm import Checksum
-MERCHANT_KEY='f!zqdoLJqnR01wrz'
+MERCHANT_KEY='Ytf!aNiO@NI4ZRz5'
 
 @login_required(login_url='/accounts/login_user')
 def order_create(request, pk):
@@ -109,7 +109,7 @@ def order_create(request, pk):
 
                 print(ordr.name)
                 param_dict={
-                    'MID': 'oLhXxv07209903445994',
+                    'MID': 'PirKxh65341470354992',
                     'ORDER_ID': str(ordr.o_id),
                     'TXN_AMOUNT':str(ordr.total_a_cost) ,
                     'CUST_ID': email,
