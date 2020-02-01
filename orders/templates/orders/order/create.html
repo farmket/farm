@@ -88,14 +88,15 @@ background-color:white;
 -->
                             <div class="col-md-6 col-xs-7 paddin-bottom">
 									<label for="pno">Phone No</label>
-									<input type="number"  min="1000000000" max="9999999999"  id="pno" required="required" name=pno" class="form-control farmket-f-radius" placeholder="Your Phone no">
+									<input type="number"  min="1000000000" max="9999999999"  id="pno" required="required" name="pno" class="form-control farmket-f-radius" placeholder="Your Phone no">
 								</div>
 
                             </div>
 							<div class="row form-group">
 								<div class="col-md-12 paddin-bottom">
-									<label for="email">Email</label>
-									<input type="email" required="required" name="email" id="email" class="form-control email farmket-f-radius" placeholder="Your email address" >
+									<label for="addr">Email</label>
+									  <textarea name="addr" rows="10" cols="30"  required="required"  id="addr" class="form-control email farmket-f-radius" placeholder="Your  address"></textarea>
+
 								</div>
 							</div>
 
@@ -242,19 +243,22 @@ background-color:white;
 
 <script>
   $("#paynow, #paycod").click(function(e) {
-      var allok = valrequired();
-
-    if (!allok) {
-
-
-    e.preventDefault();
-
-    var form = $("#form-create");
+    //alert($(this).data("url"));
+        var form = $("#form-create");
 
     form.prop("action", $(this).data("url"));
-form.validate();
+     //   e.preventDefault();
+     e.stoppropagation();
+
+
+
+
+  //  alert($(this).data("url"));
+
+//form.validate();
     form.submit();
-    }
+//    }
+
   });
 </script>
 <script>

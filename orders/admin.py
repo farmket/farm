@@ -14,7 +14,7 @@ admin.site.register(OrderItem)
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id','user', 'name',  'email','phone_no','total_cost', 'created',
+    list_display = ['id','user', 'name',  'addr','phone_no','total_cost', 'created',
                     'updated']
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline,OrderDisInline]

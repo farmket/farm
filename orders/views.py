@@ -63,22 +63,23 @@ def order_create(request, pk):
 #                if form.is_valid():
                 name = request.POST.get("name")
                 pno = request.POST.get("pno")
-                email = request.POST.get("email")
+                email = request.POST.get("addr")
                 date = request.POST.get("date")
                 time = request.POST.get("time")
-
+                print(pno)
+                print("pno")
                 ordr = Order()
-                ordr.email = email.lower()
+                ordr.addr = email
                 ordr.user = request.user
                 ordr.name = name
-                ordr.phone_no = 3333333333
+                ordr.phone_no = pno
                 ordr.date = date
                 ordr.timing = time
                 ordr.num=nos
                 print(pno)
                 print(ordr.date)
                 print(ordr.timing)
-                print(ordr.email)
+                print(ordr.addr)
                 print(ordr.phone_no)
 
                 #order = form.save()
@@ -112,7 +113,7 @@ def order_create(request, pk):
                     'MID': 'PirKxh65341470354992',
                     'ORDER_ID': str(ordr.o_id),
                     'TXN_AMOUNT':str(ordr.total_a_cost) ,
-                    'CUST_ID': email,
+                    'CUST_ID': request.user.email,
                     'INDUSTRY_TYPE_ID': 'Retail',
                     'WEBSITE': 'WEBSTAGING',
                     'CHANNEL_ID': 'WEB',
@@ -174,24 +175,17 @@ def order_create_cod(request, pk):
 
                 name = request.POST.get("name")
                 pno = request.POST.get('pno')
-                email = request.POST.get("email")
+                email = request.POST.get("addr")
                 date = request.POST.get("date")
                 time = request.POST.get("time")
                # print(email+"before")
                 print(request.user.email)
-                if email == "":
-                    email=request.user.email
+                print("pno")
+                print(pno)
 
-                if name == "":
-                    name = request.user.full_name
-                    print(name)
-
-                if not pno :
-                    pno = request.user.phone_no
-                    print("daf")
 
                 ordr = Order()
-                ordr.email = email.lower()
+                ordr.addr = email
                 ordr.user = request.user
                 ordr.name = name
                 ordr.phone_no = pno

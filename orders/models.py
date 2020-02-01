@@ -10,7 +10,7 @@ class Order(models.Model):
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     o_id=models.CharField(max_length=10)
     name = models.CharField(max_length=60)
-    email = models.EmailField()
+    addr = models.CharField(max_length=760)
     phone_no = models.CharField(max_length=11)
     shop=models.ForeignKey(Shop, on_delete=models.CASCADE)
     num= models.IntegerField()
