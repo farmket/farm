@@ -25,7 +25,7 @@ SECRET_KEY = '(bz2j+#6zn#svb%aatu2-#!9)y4u)$*snx83lykj6dl!l84)8*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['farmket.in','farmket.in:8000' ]
+ALLOWED_HOSTS = ['farmket.in','farmket.in:8000','162.241.200.194:8000' ]
 
 AUTH_USER_MODEL = 'accounts.User'
 
