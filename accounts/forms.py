@@ -100,3 +100,37 @@ class RegisterForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class RegisterFormService(forms.ModelForm):
+    """A form for creating new users. Includes all the required
+    fields, plus a repeated password."""
+    email = forms.EmailField(label='Email',widget=forms.EmailInput(attrs={'placeholder':'Email.'}))
+    full_name = forms.CharField(label='Enter Name',widget=forms.TextInput(attrs={'placeholder':'Your Name.'}))
+    phone_no = forms.IntegerField(label='Phone No.',widget=forms.TextInput(attrs={'placeholder':'Phone.'}))
+  #  username = forms.CharField(label='username',widget=forms.TextInput(attrs={'placeholder':'Username'}))
+
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder':'Enter Password.'}),)
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'placeholder':'Confirm Password.'}),)
+
+    class Meta:
+        model = User
+        fields = ('full_name','phone_no','email') #'full_name',)
+
+    def clean_password2(self):
+        # Check that the two password entries match
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords don't match")
+        return password2
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super(RegisterForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        email= self.cleaned_data["email"]
+        user.email=email.lower()
+        # user.active = False # send confirmation email
+        if commit:
+            user.save()
+        return user

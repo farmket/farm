@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views import generic
 from django.views.generic import View
-from .models import Category,Product,Shop,Facility,Feedback
+from .models import Category,Product,Shop,Facility,Feedback,SubCategory
 from .cart import Cart
 from django.template import loader
 from django.db.models import Q
@@ -173,6 +173,61 @@ def services(request):
     return render(request,'service/service.html',{'service':"contact",})
 
 
+def addservices(request,product_id):
+    if request.user.worker == True:
+
+        album = get_object_or_404(Category, pk=1)
+        sub = get_object_or_404(SubCategory, pk=product_id)
+        w=True
+    else:
+        sub=0
+        w=False
+    return render(request,'service/addservice.html',{'service':"contact",'sub':sub,'w':w})
+
+
+
+def selectservices(request):
+    if request.user.worker == True:
+
+        cat = Category.objects.all()
+        shop=Shop.objects.all()
+        subcat=SubCategory.objects.all()
+        w=True
+
+    else :
+        print("not a worker")
+        cat=[]
+        shop=[]
+        subcat=[]
+        w=False
+
+    return render(request,'service/selectservice.html',{'service':"contact",'cat':cat,'shop':shop,'subcat':subcat,'w':w})
+
+
+
+
+@require_POST
+def service_ar(request, product_id):
+    #if request.user.worker == True:
+
+        print("ss")
+        prod = get_object_or_404(Product, pk=product_id)
+        print(User.objects.get(id=request.user.id))
+        print("above")
+        z=prod.subcat.id
+        #prod=Product()
+        if request.user in prod.user.all():
+            prod.user.remove(request.user)
+        else:
+            prod.user.add(request.user)
+        print(prod.user)
+        #prod.save()
+    #else :
+        print("NOT A WORKER")
+
+        return redirect('/service/serviceprovider/'+str(z)+'/')
+
+
 '''
 def cart_create(user=None):
     cart_obj=Cart.objects.create(user=None)
@@ -305,6 +360,8 @@ def cart_ar(request, product_id):
         return redirect('service:cart_detail')
 
     return redirect('service:cart_detail')
+
+
 
 
 

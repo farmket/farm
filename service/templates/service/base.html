@@ -286,6 +286,10 @@ text-decoration-line: none;
               <div class="classynav">
                 <ul>
                   <li class="active"><a href="{% url 'main'  %}">Home</a></li>
+                    {% if request.user.worker %}
+                <li><a href="{% url 'service:selectservices'  %}">Give services</a></li>
+
+                    {% endif %}
 
                 <li><a href="{% url 'service:about_us'  %}">About</a></li>
 
@@ -393,6 +397,7 @@ text-decoration-line: none;
                 <ul>
                   <li><a href="{% url 'service:about_us' %}">About Us</a></li>
                   <li><a href="{% url 'service:contact_us' %}">Contact Us</a></li>
+                  <li><a href="{% url 'accounts:registerservice' %}">Register As Service provider</a></li>
                   <!--<li><a href="#">Shipping</a></li>-->
                   <!--<li><a href="#">FAQs</a></li>-->
                   <!--<li><a href="#">Careers</a></li>-->

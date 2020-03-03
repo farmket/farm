@@ -113,7 +113,7 @@ class Item(models.Model):
 
 
 class Product(models.Model):
-    user = models.ForeignKey(User  , on_delete=models.CASCADE)
+    user = models.ManyToManyField(User)
 
     shops = models.ForeignKey(Shop , on_delete=models.CASCADE)
     subcat = models.ForeignKey(SubCategory , on_delete=models.CASCADE)

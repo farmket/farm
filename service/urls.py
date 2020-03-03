@@ -12,6 +12,11 @@ urlpatterns = [
     url(r'^contact_us$', views.contact_us, name="contact_us"),
     url(r'^services$', views.services, name="services"),
 
+    url(r'^serviceselect', views.selectservices, name="selectservices"),
+    url(r'^serviceprovider/(?P<product_id>[0-9]+)/$', views.addservices, name="addservices"),
+    url(r'^addservice/add_rem/(?P<product_id>[0-9]+)/$', views.service_ar, name='service_ar'),
+
+
     url(r'^feedback_us/$', views.feedback, name='feedback'),
 
     # url(r'^test$', views.test,name="test"),
@@ -26,6 +31,8 @@ urlpatterns = [
 
 
     url(r'^ref/$', views.ref, name="ref"),
+
+
 
 
     # /service/71(id)/ ^ represent the begning and $ ssign represent the end both at the same time
