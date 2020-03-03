@@ -176,7 +176,8 @@ def services(request):
 def addservices(request,product_id):
     if request.user.worker == True:
 
-        album = get_object_or_404(Category, pk=1)
+        #album = get_object_or_404(Category, pk=15)
+
         sub = get_object_or_404(SubCategory, pk=product_id)
         w=True
     else:
